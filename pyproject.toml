@@ -1,9 +1,12 @@
 [tool.poetry]
 name = "yubikey-manager-lib"
-version = "0.1.0"
+version = "0.1.1"
 description = "Run yubikey-manager commands programmatically"
 authors = ["Dick Marinus"]
 license = "GPL-3"
+packages = [
+    { include = "yubikey_manager_*" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
