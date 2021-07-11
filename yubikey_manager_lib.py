@@ -1,11 +1,22 @@
 import subprocess
 import json
+import pathlib
+import sys
+import shutil
 
 
 class YKMan:
-    def __init__(self):
+    def __init__(self, ykman_repl="ykman-repl"):
+        full_ykman_repl = shutil.which(ykman_repl)
+
+        if not full_ykman_repl:
+            p = pathlib.Path(sys.argv[0])
+            full_ykman_repl = p.parent / "ykman-repl"
+            if not full_ykman_repl.exists():
+                full_ykman_repl = None
+
         self._ykman = subprocess.Popen(
-            ["ykman-repl"],
+            [full_ykman_repl],
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             universal_newlines=True,
